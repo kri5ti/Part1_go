@@ -1,7 +1,10 @@
 package main
 
-import ("fmt"
-"regexp")
+import (
+	"fmt"
+	"regexp"
+)
+
 func main() {
 	// These are the primes less than 200
 	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
@@ -14,20 +17,21 @@ func main() {
 	var a []int
 
 	for _, v := range primes {
-	if v < 10 { a = append(a, v) }
+		if v < 10 {
+			a = append(a, v)
+		}
 	}
-	fmt.Println ("Slice with less than 10 values:\n", a )
+	fmt.Println("Slice with less than 10 values:\n", a)
 	// Bonus: write a print only the two digit primes
 	reg := regexp.MustCompile(`^[0-9][0-9]$`)
 	fmt.Println("two digit primes: ")
 	for _, v := range primes {
-	if reg.MatchString(fmt.Sprintf("%d", v)) {
-	fmt.Print (v, " ")
+		if reg.MatchString(fmt.Sprintf("%d", v)) {
+			fmt.Print(v, " ")
+		}
 	}
-	}
-slice := primes[4:25]
-fmt.Println("\nSlice with only two digit primes:\n", slice)
+
+	slice := primes[4:25]
+	fmt.Println("\nSlice with only two digit primes:\n", slice)
 
 }
-
-

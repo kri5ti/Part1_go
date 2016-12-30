@@ -8,7 +8,7 @@ import (
 // Combine returns an io.Reader which represents
 // the contents of a and b.
 func Combine(a, b io.Reader) io.Reader {
-	return io.MultiReader (a, b)
+	return io.MultiReader(a, b)
 }
 
 // always reader always fills the read buffer with
@@ -26,10 +26,10 @@ func (a *alwaysReader) Read(buf []byte) (int, error) {
 
 // AReader returns an io.Reader which returns n 'A' characters
 func AReader(n int) io.Reader {
-	s := "A"
-	for i:= 1; i<n; i++ {
+	s := ""
+	for i := 0; i < n; i++ {
 		s += "A"
 	}
-	
+
 	return strings.NewReader(s)
 }

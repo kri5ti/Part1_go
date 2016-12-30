@@ -1,12 +1,11 @@
 package main
 
 import (
-	
+	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
-	"fmt"
-	"encoding/json"
 )
 
 func main() {
@@ -15,18 +14,19 @@ func main() {
 	}
 	result := make(map[string]string)
 	resp, err := http.Get(os.Args[1])
-	defer resp.Body.Close()
-
-	dec := json.NewDecoder(resp.Body)
-	err2 := dec.Decode(&result)
- 		if err2 != nil {
-			log.Fatal(err2)
-			}
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(result["origin"])
-	
+	defer resp.Body.Close()
 
-	
+	dec := json.NewDecoder(resp.Body)
+	err = dec.Decode(&result)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if _, ok := result["origin"]; ok {
+		fmt.Println(result["origin"])
+	} else {
+		fmt.Println("Result not standart")
+	}
 }
